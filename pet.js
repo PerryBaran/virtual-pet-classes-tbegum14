@@ -10,6 +10,10 @@ class Pet {
     this.fitness = MAX_FITNESS;
   }
 
+  get isAlive(){
+    return !(this.age>30||this.hunger>10||this.fitness<=0)
+  }
+
   growUp() {
     this.age++;
     this.hunger += 5;
@@ -29,6 +33,18 @@ class Pet {
       this.hunger = MIN_HUNGER;
     } else {
       this.hunger -= 3;
+    }
+  }
+
+  checkUp() {
+    if (this.fitness<=3 && this.hunger>=5){
+        return "I am hungry and I need a walk"
+    }
+    if (this.fitness<=3){
+        return "I need a walk"
+    }
+    if (this.hunger>=5){
+        return "I am hungry"
     }
   }
 }

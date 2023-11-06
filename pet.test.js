@@ -57,3 +57,36 @@ describe("feed method", () => {
     expect(pet.hunger).toEqual(0);
   });
 });
+
+describe("checkUp method", () => {
+  const pet = new Pet("Toby");
+  test("checkUp notifies when fitness is 3 or less", () => {
+    pet.fitness = 2;
+    expect(pet.checkUp()).toEqual("I need a walk");
+  });
+
+  test("checkUp notifies when hunger is 5 or more", () => {
+    pet.fitness = 4;
+    pet.hunger = 6;
+    expect(pet.checkUp()).toEqual("I am hungry");
+  });
+
+  test("checkUp notifies when fitness is 3 or less and hunger is 5 or more", () => {
+    pet.fitness = 2;
+    pet.hunger = 6;
+    expect(pet.checkUp()).toEqual("I am hungry and I need a walk");
+  });
+});
+
+describe("isAlive", () => {
+  test("isAlive returns false if fitness is 0 or less", () => {
+    const pet = new Pet("Toby");
+    pet.fitness = 0;
+    expect(pet.isAlive).toBeFalsy();
+  });
+
+  test("isAlive returns true if fitness over 0, age<30 and hunger<10", () => {
+    const pet = new Pet("Toby");
+    expect(pet.isAlive).toBeTruthy()
+  });
+});
