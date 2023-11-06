@@ -1,0 +1,14 @@
+{
+  "name": "second-virtual-pet",
+  "version": "1.0.0",
+  "description": "virtual pet with class notation",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Thasnima Begum",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
