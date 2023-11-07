@@ -10,17 +10,23 @@ class Pet {
     this.fitness = MAX_FITNESS;
   }
 
-  get isAlive(){
-    return !(this.age>30||this.hunger>10||this.fitness<=0)
+  get isAlive() {
+    return !(this.age > 30 || this.hunger > 10 || this.fitness <= 0);
   }
 
   growUp() {
+    if (!this.isAlive) {
+      throw new Error("Your pet is no longer alive :(");
+    }
     this.age++;
     this.hunger += 5;
     this.fitness -= 3;
   }
 
   walk() {
+    if (!this.isAlive) {
+      throw new Error("Your pet is no longer alive :(");
+    }
     if (this.fitness + 4 > MAX_FITNESS) {
       this.fitness = MAX_FITNESS;
     } else {
@@ -29,6 +35,9 @@ class Pet {
   }
 
   feed() {
+    if (!this.isAlive) {
+      throw new Error("Your pet is no longer alive :(");
+    }
     if (this.hunger - 3 < 0) {
       this.hunger = MIN_HUNGER;
     } else {
@@ -37,14 +46,14 @@ class Pet {
   }
 
   checkUp() {
-    if (this.fitness<=3 && this.hunger>=5){
-        return "I am hungry and I need a walk"
+    if (this.fitness <= 3 && this.hunger >= 5) {
+      return "I am hungry and I need a walk";
     }
-    if (this.fitness<=3){
-        return "I need a walk"
+    if (this.fitness <= 3) {
+      return "I need a walk";
     }
-    if (this.hunger>=5){
-        return "I am hungry"
+    if (this.hunger >= 5) {
+      return "I am hungry";
     }
   }
 }

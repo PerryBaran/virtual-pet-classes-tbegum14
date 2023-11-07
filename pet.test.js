@@ -28,14 +28,15 @@ describe("growUp method", () => {
 });
 
 describe("walk method", () => {
-  const pet = new Pet("Toby");
   test("walk increases fitness by 4", () => {
+    const pet = new Pet("Toby");
     pet.growUp();
     pet.growUp();
     pet.walk();
     expect(pet.fitness).toEqual(8);
   });
   test("walk does not increase fitness above 10", () => {
+    const pet = new Pet("Toby");
     pet.growUp();
     pet.fitness = 9;
     pet.walk();
@@ -90,3 +91,24 @@ describe("isAlive", () => {
     expect(pet.isAlive).toBeTruthy()
   });
 });
+
+describe("guarded clauses", ()=>{
+    
+    test("growUp does not execute if pet is dead", ()=>{
+        const pet = new Pet("Toby")
+        pet.age = 31
+        expect(()=>pet.growUp()).toThrowError("Your pet is no longer alive :(")
+    })
+
+    test("walk does not execute if pet is dead", ()=>{
+        const pet = new Pet("Toby")
+        pet.age = 31
+        expect(()=>pet.walk()).toThrowError("Your pet is no longer alive :(")
+    })
+
+    test("feed does not execute if pet is dead", ()=>{
+        const pet = new Pet("Toby")
+        pet.age = 31
+        expect(()=>pet.feed()).toThrowError("Your pet is no longer alive :(")
+    })
+})
